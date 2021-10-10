@@ -21,10 +21,10 @@ class _AppButtonState extends State<AppButton> {
         .padding(all: 10.0)
         .alignment(Alignment.center)
         .ripple()
-        .clipRRect(all: 10.0)
+        .clipRRect(all: 20.0)
         .decorated(
             color: AppColors.kPrimaryColor,
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(20.0),
             boxShadow: [
               BoxShadow(
                 color:

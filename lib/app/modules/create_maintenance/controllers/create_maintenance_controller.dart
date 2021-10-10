@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
 
 class CreateMaintenanceController extends GetxController {
-  //TODO: Implement CreateMaintenanceController
-
+  RxString dropdownValue = 'One'.obs;
   final count = 0.obs;
   @override
   void onInit() {

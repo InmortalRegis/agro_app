@@ -11,9 +11,7 @@ class DashboardView extends GetView<DashboardController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DashboardView'),
-        centerTitle: true,
-        elevation: 0,
+        title: Text('🌱🌾 Agro App'),
       ),
       body: Column(
         children: [

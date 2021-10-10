@@ -12,9 +12,12 @@ void main() {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.seashell,
         primarySwatch: AppColors.kprimarycolor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        backgroundColor: AppColors.seashell,
         appBarTheme: AppBarTheme(
+          elevation: 0,
           iconTheme: IconThemeData(
             color: Colors.white,
           ),
