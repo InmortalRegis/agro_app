@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:agro_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:get_storage/get_storage.dart';
@@ -47,5 +48,6 @@ class OnboardController extends GetxController {
 
   void letsBegin() {
     timer.cancel();
+    Get.offNamed(Routes.HOME);
   }
 }
