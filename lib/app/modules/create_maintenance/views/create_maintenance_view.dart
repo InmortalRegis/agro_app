@@ -23,23 +23,43 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
           children: [
             Column(
               children: [
-                AppDropdownLabeled(
-                  label: 'Mantenimiento',
+                // AppDropdownLabeled(
+                //   label: 'Mantenimiento',
+                //   items: [
+                //     {"value": "1", "text": "One"}
+                //   ],
+                // ),
+                Obx(
+                  () => AppDropdownLabeled(
+                    bgColor: Colors.white,
+                    label: 'Trabajador',
+                    items: controller.workers
+                        .map((e) => {
+                              "value": e.trabajadorId,
+                              "text": e.tNombre,
+                            })
+                        .toList(),
+                  ),
                 ),
-                AppDropdownLabeled(
-                  bgColor: Colors.white,
-                  label: 'Trabajador',
-                ),
-                AppDropdownLabeled(
-                  label: 'Insumos',
-                ),
-                AppDropdownLabeled(
-                  bgColor: Colors.white,
-                  label: 'Herramientas',
-                ),
-                AppDropdownLabeled(
-                  label: 'Terreno',
-                ),
+                // AppDropdownLabeled(
+                //   label: 'Insumos',
+                //   items: [
+                //     {"value": "1", "text": "One"}
+                //   ],
+                // ),
+                // AppDropdownLabeled(
+                //   bgColor: Colors.white,
+                //   label: 'Herramientas',
+                //   items: [
+                //     {"value": "1", "text": "One"}
+                //   ],
+                // ),
+                // AppDropdownLabeled(
+                //   label: 'Terreno',
+                //   items: [
+                //     {"value": "1", "text": "One"}
+                //   ],
+                // ),
               ],
             ),
             Padding(
@@ -78,10 +98,12 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
 class AppDropdownLabeled extends StatelessWidget {
   final Color bgColor;
   final String label;
+  final List<Map<String, String>> items;
   const AppDropdownLabeled({
     Key? key,
     this.bgColor = AppColors.periwinkle,
     required this.label,
+    required this.items,
   }) : super(key: key);
 
   @override
@@ -102,7 +124,9 @@ class AppDropdownLabeled extends StatelessWidget {
           ),
           Container(
             width: MediaQuery.of(context).size.width * 0.5,
-            child: AppDropdownBtn(),
+            child: AppDropdownBtn(
+              items: items,
+            ),
           ),
         ],
       ),
@@ -111,36 +135,57 @@ class AppDropdownLabeled extends StatelessWidget {
 }
 
 class AppDropdownBtn extends StatelessWidget {
+  final List<Map<String, String>> items;
   const AppDropdownBtn({
     Key? key,
+    required this.items,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<CreateMaintenanceController>();
+    // final controller = Get.find<CreateMaintenanceController>();
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: DropdownButton(
-        isExpanded: true,
-        value: controller.dropdownValue.value,
-        icon: Icon(Icons.arrow_drop_down),
-        elevation: 0,
-        iconSize: 42,
-        underline: SizedBox(),
-        onChanged: (String? newValue) {
-          controller.dropdownValue.value = newValue!;
-        },
-        items: ['One', 'Two', 'Three', 'Four'].map((String value) {
-          return DropdownMenuItem(
-            value: value,
-            child: Text(value),
-          );
-        }).toList(),
-      ),
-    );
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: GetBuilder<CreateMaintenanceController>(
+          initState: (_) {},
+          builder: (controller) {
+            return controller.toogle.value
+                ? DropdownButton(
+                    // isExpanded: true,
+                    hint: Text(
+                      'Seleccione una opción',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: AppColors.valhalla,
+                      ),
+                    ),
+
+                    icon: Icon(Icons.arrow_drop_down),
+                    elevation: 0,
+                    iconSize: 42,
+                    underline: SizedBox(),
+
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        controller.onSelected(newValue);
+                      }
+                    },
+                    value: controller.dropdownValue.value,
+                    items: items
+                        .map(
+                          (e) => DropdownMenuItem(
+                            value: e["value"],
+                            child: Text(e["text"] as String),
+                          ),
+                        )
+                        .toList(),
+                  )
+                : Container();
+          },
+        ));
   }
 }
