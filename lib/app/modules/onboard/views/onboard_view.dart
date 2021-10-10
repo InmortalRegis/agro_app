@@ -28,7 +28,7 @@ class OnboardView extends GetView<OnboardController> {
                   children: [
                     Image(
                       height: 400.0,
-                      width: MediaQuery.of(context).size.width * 0.8,
+                      width: _size.width * 0.8,
                       image: AssetImage(
                         path(
                           controller.images[i],
