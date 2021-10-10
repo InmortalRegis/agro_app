@@ -1,6 +1,7 @@
 import 'package:agro_app/app/core/utils/helpers.dart';
 import 'package:agro_app/app/core/values/app_colors.dart';
 import 'package:agro_app/app/modules/dashboard/local_widgets/menu_item.dart';
+import 'package:agro_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/dashboard_controller.dart';
@@ -11,8 +12,8 @@ class DashboardView extends GetView<DashboardController> {
     return Scaffold(
       appBar: AppBar(
         title: Text('DashboardView'),
-        backgroundColor: AppColors.kPrimaryColor,
         centerTitle: true,
+        elevation: 0,
       ),
       body: Column(
         children: [
@@ -73,6 +74,7 @@ class DashboardView extends GetView<DashboardController> {
                       iconImage: path(
                         'img/icons/sprout.png',
                       ),
+                      to: Routes.CREATE_MAINTENANCE,
                     ),
                   ),
                   Expanded(
@@ -81,6 +83,7 @@ class DashboardView extends GetView<DashboardController> {
                       iconImage: path(
                         'img/icons/tractor.png',
                       ),
+                      to: Routes.CREATE_MAINTENANCE,
                     ),
                   ),
                 ],

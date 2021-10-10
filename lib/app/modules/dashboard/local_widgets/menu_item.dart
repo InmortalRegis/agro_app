@@ -1,14 +1,17 @@
 import 'package:agro_app/app/core/values/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class MenuItemCard extends StatefulWidget {
   final String iconImage;
   final String title;
+  final String to;
   MenuItemCard({
     Key? key,
     required this.iconImage,
     required this.title,
+    required this.to,
   }) : super(key: key);
   @override
   State<MenuItemCard> createState() => _MenuItemCardState();
@@ -36,7 +39,9 @@ class _MenuItemCardState extends State<MenuItemCard> {
         .gestures(
           onTapChange: (tapStatus) => setState(() => pressed = tapStatus),
           onTapDown: (details) => print('tapDown'),
-          onTap: () => print('onTap'),
+          onTap: () => {
+            Get.toNamed(widget.to),
+          },
         )
         .scale(all: pressed ? 0.95 : 1.0, animate: true)
         .animate(Duration(milliseconds: 150), Curves.easeOut);

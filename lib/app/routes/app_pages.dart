@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:agro_app/app/modules/create_maintenance/bindings/create_maintenance_binding.dart';
+import 'package:agro_app/app/modules/create_maintenance/views/create_maintenance_view.dart';
 import 'package:agro_app/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:agro_app/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:agro_app/app/modules/home/bindings/home_binding.dart';
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.DASHBOARD,
       page: () => DashboardView(),
       binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_MAINTENANCE,
+      page: () => CreateMaintenanceView(),
+      binding: CreateMaintenanceBinding(),
     ),
   ];
 }
