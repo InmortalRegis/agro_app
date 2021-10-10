@@ -52,21 +52,21 @@ class DashboardView extends GetView<DashboardController> {
               ),
             ),
           ),
-          Container(
-            height: 40,
-            decoration: BoxDecoration(
-              color: AppColors.parsley,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(100.0),
-                topLeft: Radius.circular(100.0),
-              ),
-            ),
-          ),
           Expanded(
             flex: 2,
             child: Container(
-              padding: EdgeInsets.all(5.0),
-              color: AppColors.parsley,
+              padding: EdgeInsets.symmetric(
+                vertical: 30.0,
+                horizontal: 10.0,
+              ),
+              // color: AppColors.parsley,
+              decoration: BoxDecoration(
+                color: AppColors.parsley,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(40.0),
+                  topLeft: Radius.circular(40.0),
+                ),
+              ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
