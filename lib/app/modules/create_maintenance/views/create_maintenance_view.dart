@@ -1,6 +1,7 @@
 import 'package:agro_app/app/core/values/app_colors.dart';
 import 'package:agro_app/app/global_widgets/app_button.dart';
 import 'package:agro_app/app/modules/create_maintenance/local_widgets/app_drowdown_labeled.dart';
+import 'package:agro_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -89,13 +90,13 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
                     selectedValue: controller.selectedSubGround.value,
                     onChanged: (String? newValue) {
                       if (newValue != null) {
-                        controller.onSelectedTool(newValue);
+                        controller.onSelectedSubGround(newValue);
                       }
                     },
                     items: controller.subGrounds
                         .map((e) => {
                               "value": e.idsubterreno.toString(),
-                              "text": e.idsubterreno.toString(),
+                              "text": e.nombre,
                             })
                         .toList(),
                   ),
@@ -115,6 +116,7 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
                   ),
                 ),
                 onTab: () {
+                  Get.toNamed(Routes.MAINTENANCE);
                   Get.snackbar(
                     "Guardado",
                     "Se ha guardado correctamente",

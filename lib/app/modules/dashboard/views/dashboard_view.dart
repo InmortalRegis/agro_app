@@ -81,7 +81,7 @@ class DashboardView extends GetView<DashboardController> {
                       iconImage: path(
                         'img/icons/tractor.png',
                       ),
-                      to: Routes.CREATE_MAINTENANCE,
+                      to: Routes.MAINTENANCE,
                     ),
                   ),
                 ],
