@@ -1,5 +1,6 @@
 import 'package:agro_app/app/core/values/app_colors.dart';
 import 'package:agro_app/app/global_widgets/app_button.dart';
+import 'package:agro_app/app/modules/create_maintenance/local_widgets/app_drowdown_labeled.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -31,6 +32,12 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
                 // ),
                 Obx(
                   () => AppDropdownLabeled(
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        controller.onSelectedEmployee(newValue);
+                      }
+                    },
+                    selectedValue: controller.selectedEmployee.value,
                     bgColor: Colors.white,
                     label: 'Trabajador',
                     items: controller.workers
@@ -41,12 +48,23 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
                         .toList(),
                   ),
                 ),
-                // AppDropdownLabeled(
-                //   label: 'Insumos',
-                //   items: [
-                //     {"value": "1", "text": "One"}
-                //   ],
-                // ),
+                Obx(
+                  () => AppDropdownLabeled(
+                    label: 'Insumos',
+                    selectedValue: controller.selectedSupply.value,
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        controller.onSelectedSupply(newValue);
+                      }
+                    },
+                    items: controller.supplies
+                        .map((e) => {
+                              "value": e.insuId.toString(),
+                              "text": e.inNombre,
+                            })
+                        .toList(),
+                  ),
+                ),
                 // AppDropdownLabeled(
                 //   bgColor: Colors.white,
                 //   label: 'Herramientas',
@@ -92,100 +110,5 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
         ),
       ),
     );
-  }
-}
-
-class AppDropdownLabeled extends StatelessWidget {
-  final Color bgColor;
-  final String label;
-  final List<Map<String, String>> items;
-  const AppDropdownLabeled({
-    Key? key,
-    this.bgColor = AppColors.periwinkle,
-    required this.label,
-    required this.items,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: bgColor.withOpacity(0.3),
-      padding: EdgeInsets.all(16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppColors.valhalla,
-              fontSize: 18,
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.5,
-            child: AppDropdownBtn(
-              items: items,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class AppDropdownBtn extends StatelessWidget {
-  final List<Map<String, String>> items;
-  const AppDropdownBtn({
-    Key? key,
-    required this.items,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // final controller = Get.find<CreateMaintenanceController>();
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: GetBuilder<CreateMaintenanceController>(
-          initState: (_) {},
-          builder: (controller) {
-            return controller.toogle.value
-                ? DropdownButton(
-                    // isExpanded: true,
-                    hint: Text(
-                      'Seleccione una opción',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: AppColors.valhalla,
-                      ),
-                    ),
-
-                    icon: Icon(Icons.arrow_drop_down),
-                    elevation: 0,
-                    iconSize: 42,
-                    underline: SizedBox(),
-
-                    onChanged: (String? newValue) {
-                      if (newValue != null) {
-                        controller.onSelected(newValue);
-                      }
-                    },
-                    value: controller.dropdownValue.value,
-                    items: items
-                        .map(
-                          (e) => DropdownMenuItem(
-                            value: e["value"],
-                            child: Text(e["text"] as String),
-                          ),
-                        )
-                        .toList(),
-                  )
-                : Container();
-          },
-        ));
   }
 }
