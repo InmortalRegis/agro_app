@@ -65,19 +65,41 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
                         .toList(),
                   ),
                 ),
-                // AppDropdownLabeled(
-                //   bgColor: Colors.white,
-                //   label: 'Herramientas',
-                //   items: [
-                //     {"value": "1", "text": "One"}
-                //   ],
-                // ),
-                // AppDropdownLabeled(
-                //   label: 'Terreno',
-                //   items: [
-                //     {"value": "1", "text": "One"}
-                //   ],
-                // ),
+                Obx(
+                  () => AppDropdownLabeled(
+                    label: 'Herramienta',
+                    bgColor: Colors.white,
+                    selectedValue: controller.selectedTool.value,
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        controller.onSelectedTool(newValue);
+                      }
+                    },
+                    items: controller.tools
+                        .map((e) => {
+                              "value": e.idherramientas.toString(),
+                              "text": e.heNombre,
+                            })
+                        .toList(),
+                  ),
+                ),
+                Obx(
+                  () => AppDropdownLabeled(
+                    label: 'Sub-Terreno',
+                    selectedValue: controller.selectedSubGround.value,
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        controller.onSelectedTool(newValue);
+                      }
+                    },
+                    items: controller.subGrounds
+                        .map((e) => {
+                              "value": e.idsubterreno.toString(),
+                              "text": e.idsubterreno.toString(),
+                            })
+                        .toList(),
+                  ),
+                ),
               ],
             ),
             Padding(
@@ -93,7 +115,6 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
                   ),
                 ),
                 onTab: () {
-                  print('Save!');
                   Get.snackbar(
                     "Guardado",
                     "Se ha guardado correctamente",
@@ -103,6 +124,7 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
                     backgroundColor: AppColors.goblin,
                     duration: Duration(seconds: 2),
                   );
+                  // TODO - Go to maintenance list view
                 },
               ),
             ),
