@@ -11,7 +11,8 @@ import 'package:get/get.dart';
 
 class DependencyInjection {
   static void init() {
-    Get.put<Dio>(Dio(BaseOptions(baseUrl: 'http://localhost:3000')));
+    Get.put<Dio>(
+        Dio(BaseOptions(baseUrl: 'https://app-agro-back.herokuapp.com')));
 
     // providers
     // Get.put<AuthApi>(AuthApi());
