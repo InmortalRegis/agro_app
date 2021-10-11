@@ -1,6 +1,7 @@
 import 'package:agro_app/app/core/values/app_colors.dart';
 import 'package:agro_app/app/global_widgets/app_button.dart';
 import 'package:agro_app/app/modules/create_maintenance/local_widgets/app_drowdown_labeled.dart';
+import 'package:agro_app/app/modules/maintenance/controllers/maintenance_controller.dart';
 import 'package:agro_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import '../controllers/create_maintenance_controller.dart';
 
 class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
+  final _maintenanceController = Get.find<MaintenanceController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +118,15 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
                   ),
                 ),
                 onTab: () {
+                  final maintenance = {
+                    "fkTrabajadorManteni": controller.selectedEmployee.value,
+                    // "insuId": controller.selectedSupply.value,
+                    // "idherramientas": controller.selectedTool.value,
+                    // "idsubterreno": controller.selectedSubGround.value,
+                  };
+                  _maintenanceController.addMaintenance(maintenance);
                   Get.toNamed(Routes.MAINTENANCE);
+
                   Get.snackbar(
                     "Guardado",
                     "Se ha guardado correctamente",

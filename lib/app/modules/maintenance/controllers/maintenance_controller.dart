@@ -15,6 +15,19 @@ class MaintenanceController extends GetxController {
     print(maintenances);
   }
 
+  addMaintenance(Map<String, dynamic> maintenance) {
+    maintenances.add(
+      Maintenance(
+        idmantenimentos: maintenances.length + 1,
+        maFecha: DateTime.now(),
+        fkTrabajadorManteni: maintenance['fkTrabajadorManteni'],
+        maDescripcion: "Descripción",
+        maEstado: "Pendiente",
+        fkTiposMatenimiento: 1,
+      ),
+    );
+  }
+
   @override
   void onReady() {}
 
