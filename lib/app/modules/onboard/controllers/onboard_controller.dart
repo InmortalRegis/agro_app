@@ -48,6 +48,6 @@ class OnboardController extends GetxController {
 
   void letsBegin() {
     timer.cancel();
-    Get.offNamed(Routes.HOME);
+    Get.offNamed(Routes.DASHBOARD);
   }
 }
