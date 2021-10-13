@@ -12,7 +12,7 @@ class MaintenanceView extends GetView<MaintenanceController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mantenimientos'),
+        title: Text('⚙️ Mantenimientos'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

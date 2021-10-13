@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
 
+import 'package:agro_app/app/modules/create_crop/bindings/create_crop_binding.dart';
+import 'package:agro_app/app/modules/create_crop/views/create_crop_view.dart';
 import 'package:agro_app/app/modules/create_maintenance/bindings/create_maintenance_binding.dart';
 import 'package:agro_app/app/modules/create_maintenance/views/create_maintenance_view.dart';
+import 'package:agro_app/app/modules/crops/bindings/crops_binding.dart';
+import 'package:agro_app/app/modules/crops/views/crops_view.dart';
 import 'package:agro_app/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:agro_app/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:agro_app/app/modules/maintenance/bindings/maintenance_binding.dart';
@@ -36,6 +40,16 @@ class AppPages {
       name: _Paths.MAINTENANCE,
       page: () => MaintenanceView(),
       binding: MaintenanceBinding(),
+    ),
+    GetPage(
+      name: _Paths.CROPS,
+      page: () => CropsView(),
+      binding: CropsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_CROP,
+      page: () => CreateCropView(),
+      binding: CreateCropBinding(),
     ),
   ];
 }

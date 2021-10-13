@@ -12,7 +12,7 @@ class DashboardView extends GetView<DashboardController> {
     final _size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('🌱🌾 Agro App'),
+        title: Text('🍀 Agro App'),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -38,7 +38,7 @@ class DashboardView extends GetView<DashboardController> {
                       iconImage: path(
                         'img/icons/sprout.png',
                       ),
-                      to: Routes.CREATE_MAINTENANCE,
+                      to: Routes.CROPS,
                     ),
                   ),
                   Expanded(

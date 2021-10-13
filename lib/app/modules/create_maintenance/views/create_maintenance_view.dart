@@ -15,7 +15,7 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Crear mantenimiento'),
+        title: Text('🔧 Crear mantenimiento'),
         centerTitle: true,
       ),
       body: Container(
@@ -133,10 +133,9 @@ class CreateMaintenanceView extends GetView<CreateMaintenanceController> {
                     icon: Icon(Icons.check, color: Colors.white),
                     snackPosition: SnackPosition.TOP,
                     colorText: Colors.white,
-                    backgroundColor: AppColors.goblin,
+                    backgroundColor: AppColors.goblin.withOpacity(0.5),
                     duration: Duration(seconds: 2),
                   );
-                  // TODO - Go to maintenance list view
                 },
               ),
             ),

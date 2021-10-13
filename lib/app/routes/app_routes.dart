@@ -9,6 +9,8 @@ abstract class Routes {
   static const DASHBOARD = _Paths.DASHBOARD;
   static const CREATE_MAINTENANCE = _Paths.CREATE_MAINTENANCE;
   static const MAINTENANCE = _Paths.MAINTENANCE;
+  static const CROPS = _Paths.CROPS;
+  static const CREATE_CROP = _Paths.CREATE_CROP;
 }
 
 abstract class _Paths {
@@ -17,4 +19,6 @@ abstract class _Paths {
   static const DASHBOARD = '/dashboard';
   static const CREATE_MAINTENANCE = '/create-maintenance';
   static const MAINTENANCE = '/maintenance';
+  static const CROPS = '/crops';
+  static const CREATE_CROP = '/create-crop';
 }
