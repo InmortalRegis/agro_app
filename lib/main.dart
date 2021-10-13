@@ -14,6 +14,7 @@ void main() {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: ThemeData(
+        fontFamily: 'BrandonText',
         scaffoldBackgroundColor: AppColors.seashell,
         primarySwatch: AppColors.kprimarycolor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
