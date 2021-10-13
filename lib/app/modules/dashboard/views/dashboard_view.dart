@@ -1,5 +1,6 @@
 import 'package:agro_app/app/core/utils/helpers.dart';
 import 'package:agro_app/app/core/values/app_colors.dart';
+import 'package:agro_app/app/modules/dashboard/local_widgets/agro_header.dart';
 import 'package:agro_app/app/modules/dashboard/local_widgets/menu_item.dart';
 import 'package:agro_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,73 @@ class DashboardView extends GetView<DashboardController> {
       appBar: AppBar(
         title: Text('🍀 Agro App'),
       ),
-      body: Container(
+      body: Column(
+        children: [
+          Banners(
+            size: _size,
+            controller: controller,
+          ),
+          DashboardBody(),
+        ],
+      ),
+    );
+  }
+}
+
+class Banners extends StatelessWidget {
+  const Banners({
+    Key? key,
+    required Size size,
+    required this.controller,
+  })  : _size = size,
+        super(key: key);
+
+  final Size _size;
+  final DashboardController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.zero,
+      height: _size.height * 0.152,
+      child: PageView.builder(
+        padEnds: false,
+        scrollDirection: Axis.horizontal,
+        controller: controller.pageController,
+        onPageChanged: controller.onPageChanged,
+        itemCount: controller.images.length,
+        itemBuilder: (ctx, i) => Image(
+          width: _size.width,
+          image: AssetImage(
+            path(
+              controller.images[i],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DashboardBody extends StatelessWidget {
+  const DashboardBody({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final _size = MediaQuery.of(context).size;
+    return Expanded(
+      child: Container(
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: [
-            AgroHeader(),
+            Positioned(
+              child: AgroHeader(),
+              left: 0,
+              right: 0,
+              top: 20.0,
+            ),
             Positioned(
               child: AgroBg(),
               left: 0,
@@ -26,7 +89,7 @@ class DashboardView extends GetView<DashboardController> {
               bottom: 0,
             ),
             Positioned(
-              bottom: _size.height * 0.40,
+              bottom: _size.height * 0.30,
               left: 0.0,
               right: 0.0,
               child: Row(
@@ -68,7 +131,7 @@ class AgroBg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .55,
+      height: MediaQuery.of(context).size.height * .45,
       padding: EdgeInsets.symmetric(
         vertical: 30.0,
         horizontal: 10.0,
@@ -79,44 +142,6 @@ class AgroBg extends StatelessWidget {
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(40.0),
           topLeft: Radius.circular(40.0),
-        ),
-      ),
-    );
-  }
-}
-
-class AgroHeader extends StatelessWidget {
-  const AgroHeader({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
-    return Container(
-      height: _size.height * 0.30,
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image(
-              height: 100.0,
-              // width: MediaQuery.of(context).size.width * 0.8,
-              image: AssetImage(
-                path(
-                  'img/logos/logo.png',
-                ),
-              ),
-            ),
-            Text(
-              'Agro App',
-              style: TextStyle(
-                fontSize: 40.0,
-                fontWeight: FontWeight.bold,
-                color: AppColors.goblin,
-              ),
-            )
-          ],
         ),
       ),
     );

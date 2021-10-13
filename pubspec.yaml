@@ -31,4 +31,5 @@ flutter:
     - assets/img/logos/
     - assets/img/splash/
     - assets/img/icons/
+    - assets/img/banners/
   uses-material-design: true
