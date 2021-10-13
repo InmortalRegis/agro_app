@@ -9,60 +9,26 @@ import '../controllers/dashboard_controller.dart';
 class DashboardView extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
+    final _size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text('🌱🌾 Agro App'),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              // height: _size.height * 0.6,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(
-                        height: 100.0,
-                        // width: MediaQuery.of(context).size.width * 0.8,
-                        image: AssetImage(
-                          path(
-                            'img/logos/logo.png',
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Agro App',
-                        style: TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.goblin,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          children: [
+            AgroHeader(),
+            Positioned(
+              child: AgroBg(),
+              left: 0,
+              right: 0,
+              bottom: 0,
             ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                vertical: 30.0,
-                horizontal: 10.0,
-              ),
-              // color: AppColors.parsley,
-              decoration: BoxDecoration(
-                color: AppColors.parsley,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(40.0),
-                  topLeft: Radius.circular(40.0),
-                ),
-              ),
+            Positioned(
+              bottom: _size.height * 0.40,
+              left: 0.0,
+              right: 0.0,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -87,8 +53,71 @@ class DashboardView extends GetView<DashboardController> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AgroBg extends StatelessWidget {
+  const AgroBg({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * .55,
+      padding: EdgeInsets.symmetric(
+        vertical: 30.0,
+        horizontal: 10.0,
+      ),
+      // color: AppColors.parsley,
+      decoration: BoxDecoration(
+        color: AppColors.parsley,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(40.0),
+          topLeft: Radius.circular(40.0),
+        ),
+      ),
+    );
+  }
+}
+
+class AgroHeader extends StatelessWidget {
+  const AgroHeader({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final _size = MediaQuery.of(context).size;
+    return Container(
+      height: _size.height * 0.30,
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+              height: 100.0,
+              // width: MediaQuery.of(context).size.width * 0.8,
+              image: AssetImage(
+                path(
+                  'img/logos/logo.png',
+                ),
+              ),
+            ),
+            Text(
+              'Agro App',
+              style: TextStyle(
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
+                color: AppColors.goblin,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
