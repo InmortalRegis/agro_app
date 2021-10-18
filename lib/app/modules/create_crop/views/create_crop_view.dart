@@ -24,18 +24,22 @@ class CreateCropView extends GetView<CreateCropController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(children: [
-              AppDropdownLabeled(
-                label: 'Tipo',
-                bgColor: Colors.white,
-                selectedValue: controller.selectedType.value,
-                onChanged: (String? newValue) {
-                  if (newValue != null) {
-                    controller.onSelectedType(newValue);
-                  }
-                },
-                items: [
-                  {"value": "1", "text": "Tipo 1"}
-                ],
+              Obx(
+                () => AppDropdownLabeled(
+                  label: 'Tipo',
+                  selectedValue: controller.selectedType.value,
+                  onChanged: (String? newValue) {
+                    if (newValue != null) {
+                      controller.onSelectedType(newValue);
+                    }
+                  },
+                  items: controller.cropTypes
+                      .map((e) => {
+                            "value": e.idtipoCultivos.toString(),
+                            "text": e.tcNombre,
+                          })
+                      .toList(),
+                ),
               ),
               Obx(
                 () => AppDropdownLabeled(

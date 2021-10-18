@@ -1,8 +1,10 @@
+import 'package:agro_app/app/data/providers/crop_api.dart';
 import 'package:agro_app/app/data/providers/employee_api.dart';
 import 'package:agro_app/app/data/providers/maintenance_api.dart';
 import 'package:agro_app/app/data/providers/sub_ground_api.dart';
 import 'package:agro_app/app/data/providers/supply_api.dart';
 import 'package:agro_app/app/data/providers/tool_api.dart';
+import 'package:agro_app/app/data/repositories/crop_repository.dart';
 import 'package:agro_app/app/data/repositories/employee_repository.dart';
 import 'package:agro_app/app/data/repositories/maintenance_repository.dart';
 import 'package:agro_app/app/data/repositories/sub_ground_repository.dart';
@@ -23,6 +25,7 @@ class DependencyInjection {
     Get.put<ToolApi>(ToolApi());
     Get.put<SubGroundApi>(SubGroundApi());
     Get.put<MaintenanceApi>(MaintenanceApi());
+    Get.put<CropApi>(CropApi());
 
     /// repositories
     // Get.put<AuthRepository>(AuthRepository());
@@ -31,7 +34,7 @@ class DependencyInjection {
     Get.put<ToolRepository>(ToolRepository());
     Get.put<SubGroundRepository>(SubGroundRepository());
     Get.put<MaintenanceRepository>(MaintenanceRepository());
-
+    Get.put<CropRepository>(CropRepository());
     //controllers
     // inject authentication controller
     // Get.put<AuthController>(AuthController());
