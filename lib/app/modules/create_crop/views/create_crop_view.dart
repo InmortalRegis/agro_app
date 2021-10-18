@@ -1,6 +1,7 @@
 import 'package:agro_app/app/core/values/app_colors.dart';
 import 'package:agro_app/app/global_widgets/app_button.dart';
 import 'package:agro_app/app/modules/create_maintenance/local_widgets/app_drowdown_labeled.dart';
+import 'package:agro_app/app/modules/crops/controllers/crops_controller.dart';
 import 'package:agro_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import '../controllers/create_crop_controller.dart';
 
 class CreateCropView extends GetView<CreateCropController> {
+  final _cropsController = Get.find<CropsController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +74,12 @@ class CreateCropView extends GetView<CreateCropController> {
                   ),
                 ),
                 onTab: () {
+                  _cropsController.addCrop({
+                    "fkTipoCultivos": controller.selectedType.value,
+                    "fkSubterreno": controller.selectedSubGround.value,
+                    "idSubterrenoHasTipoCultivoscol": 2,
+                    "fecha": DateTime.now(),
+                  });
                   Get.toNamed(Routes.CROPS);
 
                   Get.snackbar(

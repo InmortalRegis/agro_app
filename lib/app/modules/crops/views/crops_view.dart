@@ -1,5 +1,6 @@
 import 'package:agro_app/app/core/utils/helpers.dart';
 import 'package:agro_app/app/core/values/app_colors.dart';
+import 'package:agro_app/app/data/model/crop.dart';
 import 'package:agro_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -17,16 +18,25 @@ class CropsView extends GetView<CropsController> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(children: <Widget>[
-          CropItem(),
-          CropItem(),
-          CropItem(),
-          CropItem(),
-          CropItem(),
-          CropItem(),
-          CropItem(),
-          CropItem(),
-        ]),
+        child: Obx(
+          () => controller.crops.isNotEmpty
+              ? Column(
+                  children:
+                      controller.crops.map((c) => CropItem(crop: c)).toList(),
+                )
+              : Container(
+                  height: MediaQuery.of(context).size.height * .9,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                      ],
+                    ),
+                  ),
+                ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add, color: Colors.white),
@@ -39,9 +49,8 @@ class CropsView extends GetView<CropsController> {
 }
 
 class CropItem extends StatelessWidget {
-  const CropItem({
-    Key? key,
-  }) : super(key: key);
+  final Crop crop;
+  const CropItem({Key? key, required this.crop}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,18 +85,18 @@ class CropItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Cebolla',
+                    '# Subcultivo ${crop.fkTipoCultivos.toString()}',
                     style: TextStyle(fontSize: 20),
                   ),
                   Text(
-                    'Sub-Terreno 1',
+                    '# Subterreno ${crop.fkSubterreno.toString()}',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w300,
                     ),
                   ),
                   Text(
-                    DateFormat('yyyy-MM-dd hh:mm').format(DateTime.now()),
+                    DateFormat('yyyy-MM-dd hh:mm').format(crop.fecha),
                   ),
                 ],
               ),
